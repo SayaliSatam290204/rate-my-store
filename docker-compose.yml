@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:16
+    container_name: ratemystore-db
+    environment:
+      POSTGRES_USER: ratemystore
+      POSTGRES_PASSWORD: ratemystore
+      POSTGRES_DB: ratemystore
+    ports:
+      - '5432:5432'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
