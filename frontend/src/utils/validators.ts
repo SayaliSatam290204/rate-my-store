@@ -17,6 +17,7 @@ export const registerSchema = z.object({
   email: emailSchema,
   address: addressSchema.min(1, 'Address is required'),
   password: passwordSchema,
+  role: z.enum(['admin', 'user', 'store_owner']),
 });
 
 export const loginSchema = z.object({

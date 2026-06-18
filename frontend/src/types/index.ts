@@ -80,6 +80,7 @@ export interface RegisterData {
   email: string;
   address: string;
   password: string;
+  role: UserRole;
 }
 
 export interface CreateUserData extends RegisterData {

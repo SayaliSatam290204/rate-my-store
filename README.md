@@ -31,7 +31,7 @@ cd backend
 npm install
 cp .env.example .env
 npm run seed     # Truncates tables and seeds initial users and stores
-npm run dev      # Starts development server on port 5000
+npm run dev      # Starts development server on port 5001
 ```
 
 ### 3. Frontend Setup
@@ -39,9 +39,9 @@ Open a second terminal window:
 ```bash
 cd frontend
 npm install
-npm run dev      # Starts development server on port 5173
+npm run dev      # Starts development server
 ```
-Now, navigate to [http://localhost:5173](http://localhost:5173) in your browser.
+Now, navigate to the local development URL displayed in your terminal (typically [http://localhost:5173](http://localhost:5173) or [http://localhost:5174](http://localhost:5174)).
 
 ---
 
@@ -51,7 +51,8 @@ Now, navigate to [http://localhost:5173](http://localhost:5173) in your browser.
 | :--- | :--- | :--- |
 | **Administrator** | `admin@ratemystore.com` | `Admin@123` |
 | **Store Owner** | `owner@ratemystore.com` | `Owner@123` |
-| **Normal User** | `user1@ratemystore.com` | `User1@123` |
+| **Normal User 1** | `user1@ratemystore.com` | `User1@123` |
+| **Normal User 2** | `user2@ratemystore.com` | `User2@123` |
 
 ---
 
@@ -81,3 +82,7 @@ npm run test
 4.  **Backend Data Validation Trimming**: Standardized validator chains to perform sanitization (`.trim()`, `.normalizeEmail()`) *before* checking length limitations. This prevents spaces from passing constraints and throwing database validation errors downstream.
 5.  **Deduplicated Store Fetching**: Refactored the `/stores` API controller to extract mapping loops into a single utility helper (`buildStoreResponse`), supporting both paginated and unpaginated requests.
 6.  **Accessibility (a11y) & Modal UX**: Added proper `aria-labels` to the ratings inputs and ref-based modal focus capture/restoration controls to guarantee screen readers and keyboard navigation flows are compliant.
+7.  **Landing Page Bypass**: Configured the root path `/` to redirect directly to `/login`, eliminating the landing page for streamlined access.
+8.  **Registration Role Selection**: Implemented a reusable `Select` dropdown component on the register form to allow users to sign up under specific roles (**Store Rater (Normal User)** or **Store Owner**).
+9.  **Public Registration Security**: Excluded **Platform Administrator** from the public registration dropdown. Admin accounts cannot be publicly created and must be seeded or created by another administrator inside the dashboard.
+10. **Custom Port Mapping**: Moved default backend port configuration to `5001` to prevent local development conflicts with other applications running on port `5000`.

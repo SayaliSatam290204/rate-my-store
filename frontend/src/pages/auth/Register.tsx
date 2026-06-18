@@ -5,6 +5,7 @@ import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { AuthLayout } from '../../components/layout/AuthLayout';
 import { Input } from '../../components/ui/Input';
+import { Select } from '../../components/ui/Select';
 import { Button } from '../../components/ui/Button';
 import { register as registerApi } from '../../api/auth.api';
 import { useToast } from '../../hooks/useToast';
@@ -23,6 +24,9 @@ export const Register = () => {
     setError,
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
+    defaultValues: {
+      role: 'user',
+    },
   });
 
   const mutation = useMutation({
@@ -56,6 +60,15 @@ export const Register = () => {
           label="Address"
           error={errors.address?.message}
           {...register('address')}
+        />
+        <Select
+          label="Role"
+          error={errors.role?.message}
+          options={[
+            { value: 'user', label: 'Store Rater (Normal User)' },
+            { value: 'store_owner', label: 'Store Owner' },
+          ]}
+          {...register('role')}
         />
         <Input
           label="Password"

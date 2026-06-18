@@ -22,7 +22,7 @@ export const register = async (
   next: NextFunction
 ): Promise<void> => {
   try {
-    const { name, email, address, password } = req.body;
+    const { name, email, address, password, role } = req.body;
 
     const existingUser = await User.findOne({ where: { email } });
     if (existingUser) {
@@ -35,7 +35,7 @@ export const register = async (
       email,
       address,
       password,
-      role: 'user',
+      role: role || 'user',
     });
 
     const token = generateToken({

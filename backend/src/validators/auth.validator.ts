@@ -24,6 +24,10 @@ export const registerValidator = [
     .withMessage('Password must be between 8 and 16 characters')
     .matches(passwordRegex)
     .withMessage('Password must contain at least one uppercase letter and one special character'),
+  check('role')
+    .optional()
+    .isIn(['user', 'store_owner', 'admin'])
+    .withMessage('Role must be user, store_owner, or admin'),
 ];
 
 export const loginValidator = [
