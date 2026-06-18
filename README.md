@@ -82,7 +82,3 @@ npm run test
 4.  **Backend Data Validation Trimming**: Standardized validator chains to perform sanitization (`.trim()`, `.normalizeEmail()`) *before* checking length limitations. This prevents spaces from passing constraints and throwing database validation errors downstream.
 5.  **Deduplicated Store Fetching**: Refactored the `/stores` API controller to extract mapping loops into a single utility helper (`buildStoreResponse`), supporting both paginated and unpaginated requests.
 6.  **Accessibility (a11y) & Modal UX**: Added proper `aria-labels` to the ratings inputs and ref-based modal focus capture/restoration controls to guarantee screen readers and keyboard navigation flows are compliant.
-7.  **Landing Page Bypass**: Configured the root path `/` to redirect directly to `/login`, eliminating the landing page for streamlined access.
-8.  **Registration Role Selection**: Implemented a reusable `Select` dropdown component on the register form to allow users to sign up under specific roles (**Store Rater (Normal User)** or **Store Owner**).
-9.  **Public Registration Security**: Excluded **Platform Administrator** from the public registration dropdown. Admin accounts cannot be publicly created and must be seeded or created by another administrator inside the dashboard.
-10. **Custom Port Mapping**: Moved default backend port configuration to `5001` to prevent local development conflicts with other applications running on port `5000`.
